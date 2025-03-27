@@ -33,11 +33,21 @@ class TimeInterval:
     
     # Magic method for addition (+) between two TimeInterval objects
     def __add__(self, other):
-        return self._format_time(self.total_seconds + other.total_seconds)
+        if isinstance(other, int):
+            return self._format_time(self.total_seconds + other)
+        elif isinstance(other, TimeInterval):
+            return self._format_time(self.total_seconds + other.total_seconds)
+        else:
+            raise ValueError(f'{type(other)} is not valid for TimeInterval addition.')
 
     # Magic method for subtraction (-) between two TimeInterval objects        
     def __sub__(self, other):
-        return self._format_time(self.total_seconds - other.total_seconds)
+        if isinstance(other, int):
+            return self._format_time(self.total_seconds - other)
+        elif isinstance(other, TimeInterval):
+            return self._format_time(self.total_seconds - other.total_seconds)
+        else:
+            raise ValueError(f'{type(other)} is not valid for TimeInterval subtraction.')
     
     # Magic method for multiplication (*) between TimeInterval and an integer
     def __mul__(self, other):
