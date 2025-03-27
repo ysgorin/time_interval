@@ -33,6 +33,7 @@ class TimeInterval:
     
     # Magic method for addition (+)
     def __add__(self, other):
+        # Adding an integer means to add seconds
         if isinstance(other, int):
             return self._format_time(self.total_seconds + other)
         elif isinstance(other, TimeInterval):
@@ -42,6 +43,7 @@ class TimeInterval:
 
     # Magic method for subtraction (-)     
     def __sub__(self, other):
+        # Subtracting an integer means to subtract seconds
         if isinstance(other, int):
             return self._format_time(self.total_seconds - other)
         elif isinstance(other, TimeInterval):
